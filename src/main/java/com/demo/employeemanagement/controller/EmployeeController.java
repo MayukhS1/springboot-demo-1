@@ -28,4 +28,7 @@ public class EmployeeController {
         return employeeDao.addEmployee(employee);
     }
 
+//    @PutMapping("/employees/update/{empId}")
+
+
 }
