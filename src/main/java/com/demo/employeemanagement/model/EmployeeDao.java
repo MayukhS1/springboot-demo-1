@@ -23,7 +23,7 @@ public class EmployeeDao {
         return employees.stream()
                 .filter(employee -> employee.getEmployeeId().equals(empId))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(()-> new EmployeeDaoException.EmployeeNotFoundException("Employee Not Found with Id "+empId+" !"));
     }
     public String addEmployee(Employee employee) {
         if(employeeExists(employee)) {
