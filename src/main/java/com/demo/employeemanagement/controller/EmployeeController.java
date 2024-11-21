@@ -28,7 +28,15 @@ public class EmployeeController {
         return employeeDao.addEmployee(employee);
     }
 
-//    @PutMapping("/employees/update/{empId}")
+    @PutMapping("/employees/update/{empId}")
+    public String updateEmployee(@PathVariable String empId, @RequestBody Employee updatedEmployee) {
+        return  employeeDao.updateEmployee(empId, updatedEmployee);
+    }
+
+    @DeleteMapping("/employees/delete/{empId}")
+    public String deleteEmployee(@PathVariable String empId) {
+        return employeeDao.deleteEmployee(empId);
+    }
 
 
 }
