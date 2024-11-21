@@ -43,5 +43,19 @@ public class EmployeeDao {
                             existingEmployee.getEmail().equals(employee.getEmail());
                 });
     }
+    public String updateEmployee(String empId, Employee updatedEmployee) {
+        Employee existingEmployee = getEmployeeById(empId);
+        existingEmployee.setName(updatedEmployee.getName());
+        existingEmployee.setDepartment(updatedEmployee.getDepartment());
+        existingEmployee.setDesignation(updatedEmployee.getDesignation());
+        existingEmployee.setSalary(updatedEmployee.getSalary());
+        existingEmployee.setEmail(updatedEmployee.getEmail());
+        return "Employee Updated Successfully!";
+    }
+    public String deleteEmployee(String empId) {
+        Employee existingEmployee = getEmployeeById(empId);
+        employees.remove(existingEmployee);
+        return "Employee Deleted Successfully!";
+    }
 }
 
