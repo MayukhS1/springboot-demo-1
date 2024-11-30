@@ -2,6 +2,7 @@ package com.demo.employeemanagement.controller;
 
 import com.demo.employeemanagement.model.Employee;
 import com.demo.employeemanagement.model.EmployeeDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +25,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees/add")
-    public String addEmployee(@RequestBody Employee employee) {
+    public String addEmployee(@Valid @RequestBody Employee employee) {
         return employeeDao.addEmployee(employee);
     }
 
     @PutMapping("/employees/update/{empId}")
-    public String updateEmployee(@PathVariable String empId, @RequestBody Employee updatedEmployee) {
+    public String updateEmployee(@PathVariable String empId, @Valid @RequestBody Employee updatedEmployee) {
         return  employeeDao.updateEmployee(empId, updatedEmployee);
     }
 

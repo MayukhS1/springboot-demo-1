@@ -1,7 +1,10 @@
 package com.demo.employeemanagement.exceptions;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,5 +35,15 @@ public class EmployeeExceptionHandler extends ResponseEntityExceptionHandler {
             return HttpStatus.CONFLICT;
         }
         return HttpStatus.INTERNAL_SERVER_ERROR;
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        EmployeeExceptionResponse exceptionResponse = new EmployeeExceptionResponse(
+                "Bad Request.",
+                ex.getBindingResult().toString(),
+                new Date()
+        );
+        return new ResponseEntity<Object>(exceptionResponse, status);
     }
 }
